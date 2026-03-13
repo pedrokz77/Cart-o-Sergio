@@ -208,7 +208,7 @@ function downloadVCard() {
     setTimeout(() => {
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
-        showToast("Contato pronto a guardar!");
+        showToast("Contato salvo!");
     }, 100);
 }
 
