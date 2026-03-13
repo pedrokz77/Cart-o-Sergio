@@ -1,290 +1,261 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-/* --- Reset Básico --- */
+/* ==========================================================
+   BASE & RESET
+   ========================================================== */
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    /* Altura mínima garantida para cobrir a tela */
-    min-height: 100vh; 
-    /* Suporte moderno para altura real de celular */
-    min-height: 100dvh; 
-}
+html, body { width: 100%; height: 100%; overflow: hidden; }
 
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background: linear-gradient(135deg, #e0e5e5 0%, #cfd8dc 100%);
-    background-attachment: fixed; /* Fundo não rola junto */
-    
-    display: flex;
-    justify-content: center;
-    /* MUDANÇA CRUCIAL: flex-start em vez de center evita cortar o topo no celular */
-    align-items: flex-start; 
-    
-    /* Espaçamento generoso em cima e em baixo para garantir rolagem */
-    padding: 40px 15px 40px 15px; 
-    
+    display: flex; justify-content: center; align-items: center; 
     -webkit-text-size-adjust: 100%;
 }
 
-/* --- Container Principal (O Cartão) --- */
+/* ==========================================================
+   ESTRUTURA PRINCIPAL
+   ========================================================== */
 .card-container {
-    width: 100%;
-    max-width: 390px;
-    
-    /* MUDANÇA: Altura automática sempre */
-    height: auto; 
-    /* Remove limites de altura para não cortar nada */
-    min-height: auto;
-    max-height: none;
-
+    width: 100%; height: 100dvh; max-width: 450px;
     background: url('img/fundo.png') no-repeat center center;
-    background-size: cover;
-    border-radius: 30px;
-    position: relative;
-    /* Overflow hidden apenas para arredondar cantos, não para cortar conteúdo */
-    overflow: hidden; 
-    
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    border: 6px solid #ffffff;
-    
-    display: flex;
-    flex-direction: column;
-    
-    /* Garante que o cartão fique sempre visível */
-    margin: auto; 
-    
-    animation: subirSuave 0.8s ease-out;
+    background-size: cover; position: relative;
+    display: flex; flex-direction: column; z-index: 1;
+    overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch;
 }
 
-@keyframes subirSuave {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- Cabeçalho --- */
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 25px 10px;
-}
-
-.brain-logo {
-    width: 65px;
-    height: auto;
-    display: block;
-    filter: invert(1);
-    mix-blend-mode: multiply;
-    opacity: 0.9;
-}
-
-.qr-box {
-    background: white;
-    padding: 6px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-.qr-box img { width: 45px; height: 45px; display: block; }
-
-/* --- Perfil --- */
-.profile-section {
-    text-align: center;
-    padding: 5px 20px;
-    margin-bottom: 5px;
-}
-
-.photo-frame {
-    width: 135px;
-    height: 135px;
-    margin: 0 auto 10px;
-    border-radius: 50%;
-    border: 4px solid #ffffff;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    overflow: hidden;
-}
-.photo-frame img { width: 100%; height: 100%; object-fit: cover; }
-
-.identity h1 {
-    font-size: 24px;
-    font-weight: 800;
-    color: #000000;
-    letter-spacing: -0.5px;
-    margin-bottom: 2px;
-}
-
-.identity h2 {
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #000000;
-    opacity: 0.8;
-    font-weight: 600;
-}
-
-.crp-num {
-    font-size: 13px;
-    color: #555;
-    margin-top: 5px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-}
-
-.divider {
-    width: 40px;
-    height: 4px;
-    background: #000000;
-    margin: 8px auto 0;
-    border-radius: 2px;
-    opacity: 0.8;
-}
-
-/* --- Caixa de Informações (Vidro) --- */
-.content-box {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    margin: 10px 20px 25px;
-    padding: 20px;
-    border-radius: 24px;
-    border: 1px solid rgba(255,255,255,0.6);
-    /* Removemos flex-grow para não esticar demais, apenas ocupa o espaço necessário */
-    display: flex;
-    flex-direction: column;
-}
-
-.box-title {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #000000;
-    font-weight: 700;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    padding-bottom: 8px;
-    margin-bottom: 12px;
-}
-
-.qualifications-list { list-style: none; margin-bottom: 20px; }
-
-.qualifications-list li {
-    font-size: 13px;
-    font-weight: 600;
-    color: #000000;
-    margin-bottom: 8px;
-    padding-left: 24px;
-    position: relative;
-    line-height: 1.3;
-}
-
-.qualifications-list li::before {
-    content: '\f00c';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-size: 11px;
-    color: #ffffff;
-    background: #000000;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* --- Botões --- */
-@keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7); }
-    70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
-}
-
-.cta-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background-color: #000000;
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-    padding: 12px;
-    border-radius: 16px;
-    margin-bottom: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    animation: pulse 2s infinite;
-}
-
-.share-btn {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: transparent;
-    border: 2px dashed #444;
-    color: #333;
-    padding: 10px;
-    border-radius: 16px;
-    font-weight: 700;
-    font-size: 13px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-.social-actions {
-    margin-top: 10px; /* Garante espaço acima dos ícones */
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding-bottom: 5px;
-}
-
-.btn-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    background: #ffffff;
-    color: #000000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    text-decoration: none;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    border: 1px solid #000000;
-}
-.main-wa { background: #000000; color: #ffffff; width: 55px; height: 55px; }
-
-
-/* --- RESPONSIVIDADE SEGURA --- */
-@media screen and (max-width: 480px) {
-    body {
-        /* No celular, removemos a centralização forçada */
-        align-items: flex-start;
-        padding-top: 30px; 
-        padding-bottom: 50px; /* Mais espaço no fundo para garantir rolagem */
-    }
-
+@media (min-width: 460px) and (min-height: 750px) {
     .card-container {
-        max-width: 95%; /* Pequena margem lateral */
-        margin: 0 auto;
+        height: 90vh; max-height: 850px; border-radius: 36px;
+        border: 6px solid #ffffff; box-shadow: 0 25px 50px rgba(0,0,0,0.25); overflow: hidden;
     }
-
-    /* Leve ajuste nos tamanhos para não ficar gigante, mas SEM cortar */
-    .photo-frame { width: 115px; height: 115px; }
-    .identity h1 { font-size: 22px; }
-    
-    .card-header { padding: 20px 20px 5px; }
-    .content-box { padding: 15px; margin-bottom: 20px; }
-    
-    .cta-button { font-size: 13px; padding: 12px; }
 }
+
+.card-header { display: flex; justify-content: space-between; align-items: center; padding: clamp(15px, 3vh, 25px) 25px 5px; position: relative; z-index: 2; }
+.brain-logo { width: clamp(45px, 8vh, 60px); height: auto; display: block; filter: invert(1); mix-blend-mode: multiply; opacity: 0.9; }
+
+.qr-trigger { 
+    background: rgba(255,255,255,0.85); border: 1px solid rgba(0,0,0,0.05); 
+    width: clamp(38px, 6vh, 46px); height: clamp(38px, 6vh, 46px); border-radius: 14px; 
+    display: flex; justify-content: center; align-items: center; font-size: clamp(16px, 3vh, 20px); color: #000; cursor: pointer; box-shadow: 0 8px 16px rgba(0,0,0,0.08); transition: transform 0.3s; 
+}
+.qr-trigger:hover { transform: scale(1.05); background: #ffffff; }
+
+.profile-section { text-align: center; padding: 0 20px clamp(5px, 1.5vh, 15px); position: relative; z-index: 2; }
+.photo-frame { width: clamp(90px, 16vh, 140px); height: clamp(90px, 16vh, 140px); margin: 0 auto clamp(6px, 1.5vh, 12px); border-radius: 50%; border: 4px solid #ffffff; box-shadow: 0 12px 24px rgba(0,0,0,0.12); overflow: hidden; }
+.photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+.floating-avatar { animation: float 6s ease-in-out infinite; }
+@keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-4px); } 100% { transform: translateY(0px); } }
+
+.greeting-text { font-size: clamp(10px, 1.5vh, 13px); color: #444; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 2px; }
+.identity h1 { font-size: clamp(20px, 3.5vh, 26px); font-weight: 800; color: #000000; letter-spacing: -0.5px; margin-bottom: 2px; }
+.identity h2 { font-size: clamp(10px, 1.5vh, 13px); text-transform: uppercase; letter-spacing: 2px; color: #000000; opacity: 0.7; font-weight: 700; margin-bottom: clamp(6px, 1.5vh, 12px); }
+
+.crp-wrapper { display: flex; justify-content: center; }
+.hover-copy { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 4px 14px; border-radius: 20px; background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.05); font-size: clamp(10px, 1.5vh, 12px); font-weight: 700; color: #333; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+.hover-copy:hover { background: #000; color: #fff; transform: translateY(-2px); }
+.hover-copy:hover i { color: #fff; }
+.copy-icon { opacity: 0.5; font-size: 10px; }
+
+.divider { width: 30px; height: 3px; background: #000000; margin: clamp(8px, 2vh, 18px) auto clamp(4px, 1vh, 8px); border-radius: 2px; opacity: 0.8; }
+
+.content-box {
+    flex: 1; background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    margin: 0 clamp(10px, 3vw, 20px) clamp(10px, 3vh, 20px); padding: clamp(15px, 3vh, 22px); border-radius: 28px; border: 1px solid rgba(255,255,255,0.4); 
+    display: flex; flex-direction: column; justify-content: space-evenly; position: relative; z-index: 2; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.spotlight-target::after { content: ''; position: absolute; inset: 0; border-radius: 28px; padding: 2px; background: radial-gradient(400px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(255,255,255,1), transparent 40%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; opacity: 0.9; transition: opacity 0.3s ease; }
+
+/* FILOSOFIA CLÍNICA */
+.philosophy-card {
+    background: rgba(255,255,255,0.6); border-left: 3px solid #000;
+    padding: 12px; border-radius: 12px;
+    margin-bottom: 12px; position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+.quote-icon { position: absolute; top: 8px; left: 8px; opacity: 0.1; font-size: 20px; color: #000; }
+.philosophy-card p {
+    font-size: 11px; font-style: italic; font-weight: 600;
+    color: #333; line-height: 1.4; padding-left: 20px; margin: 0;
+}
+
+/* ==========================================================
+   BENTO GRID - AJUSTADO PARA 6 ITENS
+   ========================================================== */
+.section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #000000; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; opacity: 0.9; }
+
+.bento-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 8px; 
+    margin-bottom: 15px; 
+}
+
+.bento-item { 
+    background: rgba(255,255,255,0.6); 
+    border: 1px solid rgba(255,255,255,0.8); 
+    padding: 10px; 
+    border-radius: 16px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    min-height: 62px;
+    transition: transform 0.2s, background 0.3s; 
+}
+.bento-item:hover { background: #ffffff; transform: translateY(-2px); box-shadow: 0 8px 15px rgba(0,0,0,0.05); }
+
+.bento-item strong { 
+    font-size: 10.5px; 
+    color: #000; 
+    font-weight: 800; 
+    margin-bottom: 2px; 
+    line-height: 1.1; 
+}
+.bento-item span { 
+    font-size: 9px; 
+    color: #555; 
+    font-weight: 600; 
+    line-height: 1.2;
+}
+
+/* BOTÕES E AÇÕES */
+.cta-button { display: flex; align-items: center; justify-content: center; gap: 8px; background-color: #000000; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 14px; padding: 16px; border-radius: 20px; margin-bottom: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); text-transform: uppercase; letter-spacing: 1px; transition: transform 0.2s; }
+.cta-button:active { transform: scale(0.97); }
+
+.action-buttons-row { display: flex; gap: 10px; margin-bottom: 15px; }
+.secondary-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.08); color: #111; padding: 12px; border-radius: 16px; font-weight: 700; font-size: 11px; cursor: pointer; transition: all 0.3s ease; }
+
+.social-actions { display: flex; justify-content: center; gap: 10px; }
+.btn-icon { width: 46px; height: 46px; border-radius: 14px; background: rgba(255,255,255,0.8); color: #000000; display: flex; align-items: center; justify-content: center; font-size: 20px; text-decoration: none; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: none; cursor: pointer; transition: all 0.3s ease; }
+.btn-icon:hover { background: #000000; color: #ffffff; transform: translateY(-3px); }
+.main-wa { background: #000000; color: #ffffff; }
+
+/* SPLASH SCREEN */
+.splash-screen {
+    position: fixed; inset: 0; background: #e0e5e5; z-index: 9999;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.splash-screen.hidden { opacity: 0; visibility: hidden; }
+.splash-logo { width: 80px; filter: invert(1); mix-blend-mode: multiply; margin-bottom: 20px; animation: pulse 2s infinite; }
+.splash-spinner { width: 30px; height: 30px; border: 3px solid rgba(0,0,0,0.1); border-top-color: #000; border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* TOAST E MODAIS */
+.overlay-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 999; opacity: 0; visibility: hidden; transition: 0.4s; }
+.overlay-backdrop.show { opacity: 1; visibility: visible; }
+.bottom-sheet { position: fixed; bottom: -100%; left: 50%; transform: translateX(-50%); width: 100%; max-width: 450px; background: #ffffff; border-radius: 32px 32px 0 0; z-index: 1000; padding: 15px 30px 40px; display: flex; flex-direction: column; align-items: center; transition: bottom 0.5s cubic-bezier(0.32, 0.72, 0, 1); }
+.bottom-sheet.show { bottom: 0; }
+.sheet-bar { width: 45px; height: 5px; background: #e0e0e0; border-radius: 5px; margin-bottom: 20px; }
+
+/* ESTILOS DO QR CODE */
+.sheet-title { font-size: 18px; font-weight: 800; color: #000; margin-bottom: 8px; }
+.sheet-subtitle { font-size: 12px; color: #666; text-align: center; margin-bottom: 20px; max-width: 280px; line-height: 1.4; }
+.qr-large-box { 
+    background: #fff; padding: 20px; border-radius: 24px; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05); 
+    margin-bottom: 25px; display: flex; justify-content: center; align-items: center;
+    transition: transform 0.3s ease;
+}
+.qr-large-box:hover { transform: scale(1.02); }
+.qr-large-box img { width: 200px; height: 200px; display: block; border-radius: 10px; }
+.close-sheet-btn { background: #f1f3f5; border: none; padding: 14px; border-radius: 16px; font-weight: 800; font-size: 14px; color: #333; cursor: pointer; width: 100%; transition: background 0.2s; font-family: 'Plus Jakarta Sans', sans-serif; }
+.close-sheet-btn:hover { background: #e2e6ea; }
+
+.reveal-blur { opacity: 0; filter: blur(8px); transform: scale(0.95); transition: all 1s ease; }
+.reveal-blur.visible { opacity: 1; filter: blur(0px); transform: scale(1); }
+.fade-up { opacity: 0; transform: translateY(15px); transition: all 0.8s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+.ripple-effect { position: relative; overflow: hidden; }
+.ripple-effect .ripple { position: absolute; background: rgba(255, 255, 255, 0.4); transform: translate(-50%, -50%); pointer-events: none; border-radius: 50%; animation: animateRipple 0.6s linear; }
+
+#toast { visibility: hidden; min-width: 250px; background-color: #111; color: #fff; text-align: center; border-radius: 30px; padding: 12px 20px; position: fixed; z-index: 10000; left: 50%; bottom: 30px; transform: translateX(-50%); font-size: 12px; opacity: 0; transition: all 0.4s ease; }
+#toast.show { visibility: visible; opacity: 1; bottom: 50px; }
+
+/* ==========================================================
+   EFEITOS PREMIUM (Partículas, Pop-up e Gradient)
+   ========================================================== */
+
+/* 1. Partículas (Ficam atrás do conteúdo) */
+#particles-js {
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    z-index: 0; 
+}
+.card-header, .profile-section, .content-box {
+    position: relative; z-index: 2; /* Garante que o texto fica à frente das partículas */
+}
+
+/* 2. Animação Breathing Background (Respiração) no Modo Escuro */
+@keyframes breathing-bg {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 3. Estilos do Pop-up de Intenção de Saída */
+.exit-popup {
+    position: fixed; top: 50%; left: 50%;
+    transform: translate(-50%, -40%) scale(0.95);
+    width: 90%; max-width: 350px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px; padding: 30px 20px;
+    text-align: center; z-index: 1000;
+    opacity: 0; visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+.exit-popup.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1; visibility: visible;
+}
+.whatsapp-icon-large {
+    font-size: 45px; color: #25D366; margin-bottom: 15px;
+}
+.exit-popup h3 { font-size: 20px; margin-bottom: 10px; color: #111; }
+.exit-popup p { font-size: 14px; margin-bottom: 25px; color: #555; line-height: 1.5; }
+
+.close-text-btn {
+    background: none; border: none; color: #888;
+    margin-top: 20px; font-size: 14px; cursor: pointer;
+    text-decoration: underline; padding: 5px;
+}
+
+/* ==========================================================
+   MODO ESCURO MANUAL (.dark-theme)
+   ========================================================== */
+body.dark-theme { background: linear-gradient(135deg, #1a1c1e 0%, #0d0e10 100%); }
+
+/* Adicionado o Breathing Background ao container do Modo Escuro */
+body.dark-theme .card-container { 
+    background: linear-gradient(-45deg, rgba(15,20,25,0.85), rgba(10,12,14,0.9), rgba(25,30,35,0.85), rgba(5,8,10,0.9)), url('img/fundo.png') no-repeat center center; 
+    background-size: 300% 300%, cover; 
+    animation: breathing-bg 18s ease infinite;
+}
+
+body.dark-theme .identity h1, body.dark-theme .section-title, body.dark-theme .bento-item strong, body.dark-theme .sheet-title { color: #f1f1f1; text-shadow: none; }
+body.dark-theme .identity h2, body.dark-theme .greeting-text, body.dark-theme .bento-item span, body.dark-theme .sheet-subtitle { color: #aaa; }
+body.dark-theme .content-box { background: rgba(30, 30, 30, 0.6); border-color: rgba(255,255,255,0.1); }
+body.dark-theme .bento-item, body.dark-theme .secondary-btn, body.dark-theme .btn-icon, body.dark-theme .hover-copy, body.dark-theme .qr-trigger { background: rgba(45, 45, 45, 0.7); border-color: rgba(255,255,255,0.1); color: #f1f1f1; }
+body.dark-theme .philosophy-card { background: rgba(45, 45, 45, 0.6); border-left-color: #fff; }
+body.dark-theme .philosophy-card p { color: #ddd; }
+body.dark-theme .quote-icon { color: #fff; }
+body.dark-theme .cta-button, body.dark-theme .main-wa { background-color: #f1f1f1; color: #000; }
+
+body.dark-theme .bottom-sheet { background: #1a1c1e; }
+body.dark-theme .close-sheet-btn { background: #2a2c2e; color: #f1f1f1; }
+body.dark-theme .close-sheet-btn:hover { background: #333; }
+body.dark-theme .qr-large-box { background: #ffffff; border-color: #eee; } 
+body.dark-theme .qr-large-box img { filter: none; }
+body.dark-theme .splash-screen { background: #1a1c1e; }
+
+/* Cores do Pop-up no Modo Escuro */
+body.dark-theme .exit-popup { background: rgba(40, 40, 40, 0.95); border: 1px solid rgba(255,255,255,0.1); }
+body.dark-theme .exit-popup h3 { color: #f1f1f1; }
+body.dark-theme .exit-popup p { color: #aaa; }
