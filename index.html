@@ -1,91 +1,159 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sérgio Cardoso | Psicólogo</title>
+    
+    <title>Sérgio Cardoso | Psicólogo Clínico</title>
+    <meta name="description" content="Agende a sua consulta com o Psicólogo Sérgio Cardoso. Atendimento especializado, presencial e online.">
+    <meta property="og:title" content="Sérgio Cardoso | Psicólogo Clínico">
+    <meta property="og:description" content="Aceda ao meu cartão digital para agendar a sua consulta e conhecer a minha trajetória profissional.">
+    <meta property="og:image" content="https://sergiopsicologo.vercel.app/img/perfil.JPG">
+    <meta property="og:url" content="https://sergiopsicologo.vercel.app/">
+    <meta property="og:type" content="profile">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
 </head>
 <body>
 
-<div class="card-container">
+<div id="splash-screen" class="splash-screen">
+    <img src="img/mente.jpeg" alt="Logótipo Mente" class="splash-logo">
+    <div class="splash-spinner"></div>
+</div>
+
+<div class="card-container spotlight-target" id="main-card">
     
-    <div class="card-header">
-        <div class="logo-wrapper">
-            <img src="img/mente.jpeg" alt="Logo Mente" class="brain-logo">
+    <div id="particles-js"></div> 
+
+    <div class="card-header fade-up">
+        <div class="logo-wrapper reveal-blur">
+            <img src="img/mente - Editado.png" alt="Logótipo Mente" class="brain-logo">
         </div>
-        <div class="qr-box">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://wa.me/5512982651845" alt="QR WhatsApp">
+        <div style="display: flex; gap: 10px;">
+            <button id="theme-toggle" class="qr-trigger ripple-effect" aria-label="Alternar tema" title="Alternar tema">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <button class="qr-trigger ripple-effect" onclick="openQR()" aria-label="Abrir QR Code do cartão" title="Mostrar QR Code">
+                <i class="fa-solid fa-qrcode"></i>
+            </button>
         </div>
     </div>
 
-    <div class="profile-section">
-        <div class="photo-frame">
-            <img src="img/perfil.JPG" alt="Foto Sérgio Cardoso">
+    <div class="profile-section fade-up">
+        <div class="photo-frame reveal-blur floating-avatar">
+            <img src="img/perfil.JPG" alt="Fotografia de Sérgio Cardoso">
         </div>
         <div class="identity">
             <h1>Sérgio Cardoso</h1>
             <h2>Psicólogo</h2>
-            <p class="crp-num">CRP 08/IS-625</p> 
+            <div class="crp-wrapper">
+                <button class="crp-num hover-copy" onclick="copyText('CRP 08/IS-625', 'CRP copiado com sucesso!')" aria-label="Copiar número do CRP">
+                    <i class="fa-solid fa-id-card"></i> CRP 08/IS-625 <i class="fa-regular fa-copy copy-icon"></i>
+                </button> 
+            </div>
             <div class="divider"></div>
         </div>
     </div>
 
-    <div class="content-box">
-        <h3 class="box-title">Formação Acadêmica</h3>
-        <ul class="qualifications-list">
-            <li>Graduado em Psicologia e Filosofia (UNISAL)</li>
-            <li>Pós-graduado em Teologia (Fac. Dehoniana)</li>
-            <li>Graduado em Pedagogia (Fac. Claretiana)</li>
-            <li>Mestre em Teologia (PUC/PR)</li>
-            <li>Espiritualidade Cristã (Assis/Itália)</li>
-            <li>Curso de Formadores (CRB/SP)</li>
-        </ul>
+    <div class="content-box fade-up">
+        
+        <div class="philosophy-card fade-up">
+            <i class="fa-solid fa-quote-left quote-icon"></i>
+            <p>"A psicoterapia não é sobre mudar quem você é, mas sobre remover os obstáculos que o impedem de ser."</p>
+        </div>
+        
+        <div class="section-title">
+            <i class="fa-solid fa-graduation-cap"></i> Formação e Trajetória
+        </div>
+        
+        <div class="bento-grid">
+            <div class="bento-item">
+                <strong>Psicologia</strong>
+                <span>Graduação (UNISAL)</span>
+            </div>
+            <div class="bento-item">
+                <strong>Filosofia</strong>
+                <span>Graduação (UNISAL)</span>
+            </div>
+            <div class="bento-item">
+                <strong>Pedagogia</strong>
+                <span>Graduação (Fac. Claretiana)</span>
+            </div>
+            <div class="bento-item">
+                <strong>Teologia</strong>
+                <span>Mestre (PUC/PR)</span>
+            </div>
+            <div class="bento-item">
+                <strong>Esp. em Teologia</strong>
+                <span>Pós-Graduação (Dehoniana)</span>
+            </div>
+            <div class="bento-item">
+                <strong>Formação Itália</strong>
+                <span>Especialização (Assis/CRB)</span>
+            </div>
+        </div>
 
-        <a href="https://wa.me/5512982651845?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20agendamento." class="cta-button" target="_blank">
-            <i class="fa-brands fa-whatsapp"></i> Agendar Sessão
+        <a href="https://wa.me/5512982651845?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20agendamento." class="cta-button ripple-effect" target="_blank" aria-label="Agendar consulta pelo WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i> Agendar Consulta
         </a>
 
-        <button class="share-btn" onclick="shareCard()">
-            <i class="fa-solid fa-share-nodes"></i> Compartilhar Cartão
-        </button>
-        <div class="social-actions">
-            <a href="https://wa.me/5512982651845" class="btn-icon main-wa" target="_blank">
+        <div class="action-buttons-row fade-up">
+            <button class="secondary-btn ripple-effect" onclick="downloadVCard()" aria-label="Guardar contato">
+                <i class="fa-solid fa-user-plus"></i> Salvar Contato
+            </button>
+            <button class="secondary-btn ripple-effect" onclick="shareCard()" aria-label="Compartilhar este cartão digital">
+                <i class="fa-solid fa-share-nodes"></i> Compartilhar
+            </button>
+        </div>
+
+        <div class="social-actions fade-up">
+            <a href="https://wa.me/5512982651845" class="btn-icon main-wa ripple-effect" target="_blank" aria-label="Abrir conversa no WhatsApp">
                 <i class="fa-brands fa-whatsapp"></i>
             </a>
-            <a href="https://www.instagram.com/sergiohacardoso?igsh=anZhdTdlZHowNjh5" class="btn-icon" target="_blank">
+            <a href="https://www.instagram.com/sergiohacardoso?igsh=anZhdTdlZHowNjh5" class="btn-icon ripple-effect" target="_blank" aria-label="Visitar o perfil do Instagram">
                 <i class="fa-brands fa-instagram"></i>
             </a>
-            <a href="https://www.facebook.com/share/1HtSoYM94n/" class="btn-icon" target="_blank">
+            <a href="https://www.facebook.com/share/1HtSoYM94n/" class="btn-icon ripple-effect" target="_blank" aria-label="Visitar a página do Facebook">
                 <i class="fa-brands fa-facebook-f"></i>
             </a>
-            <a href="mailto:sergiohacardoso@gmail.com" class="btn-icon" target="_blank">
+            <button onclick="copyText('sergiohacardoso@gmail.com', 'E-mail copiado com sucesso!')" class="btn-icon ripple-effect" aria-label="Copiar endereço de e-mail">
                 <i class="fa-solid fa-envelope"></i>
-            </a>
+            </button>
         </div>
     </div>
-    
-   
-
 </div>
 
-<script>
-    function shareCard() {
-        if (navigator.share) {
-            navigator.share({
-                title: 'Sérgio Cardoso | Psicólogo',
-                text: 'Olá! Conheça o cartão digital do Psicólogo Sérgio Cardoso:',
-                url: window.location.href
-            })
-            .then(() => console.log('Compartilhado com sucesso!'))
-            .catch((error) => console.log('Erro ao compartilhar', error));
-        } else {
-            // Caso o navegador (ex: PC antigo) não suporte, ele avisa
-            alert('Para compartilhar, copie o link do navegador e envie para seus contatos!');
-        }
-    }
-</script>
+<div class="overlay-backdrop" id="qrBackdrop" onclick="closeQR()"></div>
+<div class="bottom-sheet" id="qrBottomSheet" aria-hidden="true">
+    <div class="sheet-bar"></div>  
+    <h3 class="sheet-title">Meu Cartão Digital</h3>
+<br>    
+    <div class="qr-large-box">
+        <img id="qrImageElement" src="" alt="QR Code do Cartão Digital">
+    </div>
+    
+    <button class="close-sheet-btn ripple-effect" onclick="closeQR()" aria-label="Fechar janela do QR Code">Fechar</button>
+</div>
 
+<div class="overlay-backdrop" id="exitBackdrop" onclick="closeExitPopup()"></div>
+<div class="exit-popup" id="exitPopup">
+    <div class="exit-content">
+        <i class="fa-brands fa-whatsapp whatsapp-icon-large"></i>
+        <h3>Ainda tem dúvidas?</h3>
+        <p>A terapia é um passo importante. Se não tiver a certeza de como funciona, envie-me uma mensagem. Estou à disposição para conversar consigo.</p>
+        <a href="https://wa.me/5512982651845?text=Olá,%20Sérgio.%20Estava%20a%20ver%20o%20seu%20cartão%20digital%20e%20gostaria%20de%20tirar%20uma%20dúvida." class="cta-button ripple-effect" target="_blank" onclick="closeExitPopup()">
+            Falar pelo WhatsApp
+        </a>
+        <button onclick="closeExitPopup()" class="close-text-btn">Agora não</button>
+    </div>
+</div>
+
+<div id="toast" role="alert">Mensagem</div>
+
+<script src="script.js"></script>
 </body>
 </html>
